@@ -1,0 +1,18 @@
+FROM python:3.13
+
+RUN apt-get update \
+    && apt-get install -y \
+    nginx \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+WORKDIR /app
+
+COPY main.py .
+COPY requirements.txt .
+COPY start.sh .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN chmod +x start.sh
