@@ -5,3 +5,4 @@ pandas
 transformers[torch]
 langchain-text-splitters
 python-multipart
+tiktoken
