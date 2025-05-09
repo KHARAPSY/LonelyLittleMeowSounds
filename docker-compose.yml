@@ -12,13 +12,13 @@ services:
       - PYTHONUNBUFFERED=1
     command: >
       bash -c "./start.sh"
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 1G
-          pids: 100
-        reservations:
-          cpus: '0.25'
-          memory: 512M
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.50'
+    #       memory: 1G
+    #       pids: 100
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 512M
     restart: unless-stopped
