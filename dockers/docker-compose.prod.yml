@@ -1,0 +1,23 @@
+services:
+  llms:
+    build:
+      context: ..
+      dockerfile: dockers/Dockerfile.prod
+      args:
+        - SUPERUSER=$SUPERUSER
+    hostname: $HOSTNAME
+    container_name: ${SUPERUSER}_llms
+    ports:
+      - "8058:8058"
+    volumes:
+      - ../start.prod.sh:/home/$SUPERUSER/LLMS/start.prod.sh
+      - ../api/:/home/$SUPERUSER/LLMS/api/
+      - ../docs/:/home/$SUPERUSER/LLMS/docs/
+      - ../requirements.txt:/home/$SUPERUSER/LLMS/requirements.txt
+      - ../nginx.conf:/etc/nginx/nginx.conf
+      - ../logs:/var/log/app
+    env_file:
+      - .env
+    command: >
+      bash -c "./start.prod.sh"
+    restart: always

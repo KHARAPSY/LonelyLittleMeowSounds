@@ -1,0 +1,33 @@
+FROM python:3.13
+
+RUN apt-get update \
+    && apt-get install -y \
+    sudo \
+    nginx \
+    && rm -rf /var/lib/apt/lists/*
+
+ARG SUPERUSER
+ARG USER_ID=1000
+
+ENV SUPERUSER=$SUPERUSER
+ENV USER_ID=$USER_ID
+
+RUN groupadd -g $USER_ID $SUPERUSER && \
+    useradd -u $USER_ID -g $SUPERUSER -m $SUPERUSER && \
+    echo "$SUPERUSER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$SUPERUSER && \
+    chmod 0440 /etc/sudoers.d/$SUPERUSER
+
+USER $SUPERUSER
+
+COPY ../nginx.conf /etc/nginx/nginx.conf
+
+WORKDIR /home/$SUPERUSER/LLMS
+
+COPY ../api ./api
+COPY ../docs ./docs
+COPY ../requirements.txt .
+COPY ../start.sh .
+
+RUN python3 -m venv ${SUPERUSER}_venv
+
+RUN sudo chmod +x start.sh

@@ -34,7 +34,7 @@ sudo nginx &>> "$LOG_FILE"
 # Start FastAPI app
 log "Starting FastAPI application..."
 cd "$HOME/LLMS/api"
-uvicorn main:app --host 0.0.0.0 --port "$API_PORT" --reload --workers 2 --log-level info &>> "$LOG_FILE" &
+uvicorn main_dev:app --host 0.0.0.0 --port "$API_PORT" --reload --log-level info &>> "$LOG_FILE" &
 UVICORN_PID=$!
 
 # Wait for background processes
