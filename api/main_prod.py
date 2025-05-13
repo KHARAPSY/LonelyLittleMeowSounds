@@ -12,14 +12,6 @@ from fastapi import FastAPI
 title = "LonelyLittleMeowSounds"
 
 app = FastAPI(title=f"{title}", version="0.0.1")
-
-@app.get("/")
-def read_root():
-    return {
-        "message": f"{title} API",
-        "usage": "For full API documentation and testing, visit /docs (Swagger UI) or /redoc (ReDoc)."
-    }
-
 tokenizer = AutoTokenizer.from_pretrained("BAAI/bge-m3")
 
 @app.post("/chunking")
