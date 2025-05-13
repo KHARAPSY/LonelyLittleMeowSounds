@@ -1,0 +1,36 @@
+Usage
+=====
+
+This application allows you to upload files (PDF, CSV, XLS/XLSX) and split their contents into tokenized chunks using either OpenAI's `text-embedding-ada-002` or BAAI's `bge-m3` model.
+
+How to Use
+----------
+
+1. Start the FastAPI server:
+
+   .. code-block:: bash
+      cd api/
+      uvicorn main:app --reload
+
+2. Open your browser and navigate to:
+
+   http://127.0.0.1:8000/docs
+
+3. Use the `/chunking` endpoint to upload a file and specify:
+
+   - `chunk_size`: Number of tokens per chunk (default: 500)
+   - `chunk_overlap`: Number of tokens overlapping between chunks (default: 20)
+   - `embedding_model`: One of `text-embedding-ada-002` or `BAAI/bge-m3`
+
+Example with `curl`:
+
+.. code-block:: bash
+
+   curl -X 'POST' \
+     'http://127.0.0.1:8000/chunking' \
+     -F 'file=@your_file.pdf' \
+     -F 'chunk_size=500' \
+     -F 'chunk_overlap=20' \
+     -F 'embedding_model=BAAI/bge-m3'
+
+The response will contain a list of text chunks extracted and split from your file.
