@@ -6,7 +6,8 @@ transformers[torch]
 langchain-text-splitters
 python-multipart
 tiktoken
+httpx
+docling
 sphinx
 furo
 pytest
-httpx
