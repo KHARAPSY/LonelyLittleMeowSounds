@@ -4,6 +4,11 @@ RUN apt-get update \
     && apt-get install -y \
     sudo \
     nginx \
+    poppler-utils \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    tesseract-ocr-tha \
+    libtesseract-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ARG SUPERUSER
