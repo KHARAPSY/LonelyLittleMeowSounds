@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "LonelyLittleMeowSounds"
+version = "0.1.0"
+description = "Your friendly companion for harnessing large language models to make daily tasks smarter and more efficient."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "KHARAPSY", email = "kharapsy@suwalutions.com"}]
+maintainers = [{name = "KHARAPSY", email = "kharapsy@suwalutions.com"}]
+license = {text = "MIT"}
+license-files = ["LICENSE"]
+keywords = ["llm", "language-model", "automation", "ai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "PyMuPDF>=1.25.5",
+    "pandas>=2.2.3",
+    "transformers[torch]>=4.51.3",
+    "langchain-text-splitters>=0.3.8",
+    "python-multipart>=0.0.20",
+    "tiktoken>=0.9.0",
+    "httpx>=0.28.1",
+    "docling>=2.31.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/KHARAPSY/LonelyLittleMeowSounds"
+Repository = "https://github.com/KHARAPSY/LonelyLittleMeowSounds"
+"Bug Tracker" = "https://github.com/KHARAPSY/LonelyLittleMeowSounds/issues"
+Documentation = "https://lonelylittlemeowsounds.suwalutions.com/documentation/"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.5",
+]
+docs = [
+    "sphinx>=8.2.3",
+    "furo>=2024.8.6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["lolimeowss"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+filterwarnings = [
+  "ignore:.*has no __module__ attribute:DeprecationWarning",
+  "ignore:.*deprecated:DeprecationWarning"
+]
