@@ -2,6 +2,7 @@ fastapi
 uvicorn[standard]
 pymupdf
 pandas
+markitdown[all]
 transformers[torch]
 langchain-text-splitters
 python-multipart
